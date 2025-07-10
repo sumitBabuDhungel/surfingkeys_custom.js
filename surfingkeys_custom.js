@@ -1,16 +1,6 @@
 // =============================
 //         Research Tools
 // =============================
-api.mapkey('<Alt-s>', 'Toggle SurfingKeys on/off', function () {
-    if (surfingkeysEnabled) {
-        api.unmapAllExcept(['<Alt-s>']); 
-        Front.showPopup('🔕 SurfingKeys OFF (refresh to re-enable)');
-    } else {
-        location.reload();
-    }
-    surfingkeysEnabled = !surfingkeysEnabled;
-});
-
 api.mapkey(',h', "Help menu for key binds", function () {
     Front.showEditor(
         `🔑 My Surfingkeys Shortcuts:
