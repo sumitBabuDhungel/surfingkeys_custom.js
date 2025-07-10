@@ -4,7 +4,7 @@
 
 let surfingkeysEnabled = true;
 
-mapkey('<Alt-s>', 'Toggle SurfingKeys on/off', function () {
+api.mapkey('<Alt-s>', 'Toggle SurfingKeys on/off', function () {
     if (surfingkeysEnabled) {
         unmapAllExcept(['<Alt-s>']);
         Front.showPopup('🔕 SurfingKeys OFF (refresh to re-enable)');
@@ -14,7 +14,7 @@ mapkey('<Alt-s>', 'Toggle SurfingKeys on/off', function () {
     surfingkeysEnabled = !surfingkeysEnabled;
 });
 
-mapkey(',h', "Help menu for key binds", function () {
+api.mapkey(',h', "Help menu for key binds", function () {
     Front.showEditor(
         `🔑 My Surfingkeys Shortcuts:
 
@@ -31,7 +31,7 @@ mapkey(',h', "Help menu for key binds", function () {
     );
 });
 
-mapkey(',rs', "Research sources", function () {
+api.mapkey(',rs', "Research sources", function () {
     Front.showEditor(
         `
             Choose a Research Tool:
@@ -81,7 +81,7 @@ mapkey(',rs', "Research sources", function () {
     );
 });
 
-mapkey(',ls', 'Linux Sources', function () {
+api.mapkey(',ls', 'Linux Sources', function () {
     Front.showEditor(
         `
         Choose a linux tool:
@@ -122,7 +122,7 @@ mapkey(',ls', 'Linux Sources', function () {
     );
 });
 
-mapkey(',cs', "Cubing Sources", function () {
+api.mapkey(',cs', "Cubing Sources", function () {
     Front.showEditor(
         `
         Choose a cubing tool:
@@ -156,7 +156,7 @@ mapkey(',cs', "Cubing Sources", function () {
     );
 });
 
-mapkey(',cp', "Chess Practice", function () {
+api.mapkey(',cp', "Chess Practice", function () {
     Front.showEditor(
         `
         Choose a chess tool:
@@ -190,7 +190,7 @@ mapkey(',cp', "Chess Practice", function () {
     );
 });
 
-mapkey(',ts', "Typing Sources", function () {
+api.mapkey(',ts', "Typing Sources", function () {
     Front.showEditor(
         `
         Choose a typing tool:
@@ -239,7 +239,7 @@ mapkey(',ts', "Typing Sources", function () {
     );
 });
 
-mapkey(',ms', "Movies and Series", function () {
+api.mapkey(',ms', "Movies and Series", function () {
     Front.showEditor(
         `
         Choose a movie Tool:
@@ -270,7 +270,7 @@ mapkey(',ms', "Movies and Series", function () {
     );
 });
 
-mapkey(',as', "Anime and manga", function () {
+api.mapkey(',as', "Anime and manga", function () {
     Front.showEditor(
         `
         Choose an Anime Tool:
@@ -301,7 +301,7 @@ mapkey(',as', "Anime and manga", function () {
     );
 });
 
-mapkey(',ns', "Note Sources", function () {
+api.mapkey(',ns', "Note Sources", function () {
     Front.showEditor(
         `
         Choose a Note Tool:
