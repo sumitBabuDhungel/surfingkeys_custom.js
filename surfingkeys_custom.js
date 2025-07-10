@@ -3,7 +3,7 @@
 // =============================
 api.mapkey('<Alt-s>', 'Toggle SurfingKeys on/off', function () {
     if (surfingkeysEnabled) {
-        api.unmapAllExcept(['<Alt-s>']); // ✅ Fixed here
+        api.unmapAllExcept(['<Alt-s>']); 
         Front.showPopup('🔕 SurfingKeys OFF (refresh to re-enable)');
     } else {
         location.reload();
