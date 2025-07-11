@@ -3,7 +3,7 @@
 // =============================
 console.log("✅ Surfingkeys custom config loaded!");
 
-api.mapkey(',h', "Help menu for key binds", function () {
+mapkey(',h', "Help menu for key binds", function () {
     Front.showEditor(
         `🔑 My Surfingkeys Shortcuts:
 
@@ -20,7 +20,7 @@ api.mapkey(',h', "Help menu for key binds", function () {
     );
 });
 
-api.mapkey(',rs', "Research sources", function () {
+mapkey(',rs', "Research sources", function () {
     Front.showEditor(
         `
             Choose a Research Tool:
@@ -70,7 +70,7 @@ api.mapkey(',rs', "Research sources", function () {
     );
 });
 
-api.mapkey(',ls', 'Linux Sources', function () {
+mapkey(',ls', 'Linux Sources', function () {
     Front.showEditor(
         `
         Choose a linux tool:
@@ -111,7 +111,7 @@ api.mapkey(',ls', 'Linux Sources', function () {
     );
 });
 
-api.mapkey(',cs', "Cubing Sources", function () {
+mapkey(',cs', "Cubing Sources", function () {
     Front.showEditor(
         `
         Choose a cubing tool:
@@ -145,7 +145,7 @@ api.mapkey(',cs', "Cubing Sources", function () {
     );
 });
 
-api.mapkey(',cp', "Chess Practice", function () {
+mapkey(',cp', "Chess Practice", function () {
     Front.showEditor(
         `
         Choose a chess tool:
@@ -179,7 +179,7 @@ api.mapkey(',cp', "Chess Practice", function () {
     );
 });
 
-api.mapkey(',ts', "Typing Sources", function () {
+mapkey(',ts', "Typing Sources", function () {
     Front.showEditor(
         `
         Choose a typing tool:
@@ -228,7 +228,7 @@ api.mapkey(',ts', "Typing Sources", function () {
     );
 });
 
-api.mapkey(',ms', "Movies and Series", function () {
+mapkey(',ms', "Movies and Series", function () {
     Front.showEditor(
         `
         Choose a movie Tool:
@@ -259,7 +259,7 @@ api.mapkey(',ms', "Movies and Series", function () {
     );
 });
 
-api.mapkey(',as', "Anime and manga", function () {
+mapkey(',as', "Anime and manga", function () {
     Front.showEditor(
         `
         Choose an Anime Tool:
@@ -290,7 +290,7 @@ api.mapkey(',as', "Anime and manga", function () {
     );
 });
 
-api.mapkey(',ns', "Note Sources", function () {
+mapkey(',ns', "Note Sources", function () {
     Front.showEditor(
         `
         Choose a Note Tool:
