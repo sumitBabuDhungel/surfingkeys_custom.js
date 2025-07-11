@@ -1,323 +1,117 @@
 // =============================
-//         Research Tools
+//      Surfingkeys Config Fix
 // =============================
+
 console.log("✅ Surfingkeys custom config loaded!");
 
-api.mapkey(',h', "Help menu for key binds", function () {
+// Use api.mapkey because this script is autoloaded remotely
+const { mapkey, Front, RUNTIME } = api;
+
+function openLinks(urls) {
+    urls.forEach(url => RUNTIME("openLink", { url }));
+}
+
+function createMenu(keys, description, sites) {
+    mapkey(keys, description, function () {
+        Front.showEditor(
+            sites.map((site, i) => `${i + 1} - ${site.name}`).join("\n") +
+            `\n0 - Open All`,
+            function (choice) {
+                const index = parseInt(choice.trim());
+                if (index === 0) openLinks(sites.map(s => s.url));
+                else if (!isNaN(index) && sites[index - 1]) RUNTIME("openLink", { url: sites[index - 1].url });
+                else Front.showPopup("Invalid choice. Please enter a number from the list.");
+            }
+        );
+    });
+}
+
+mapkey(',h', "Help menu for key binds", function () {
     Front.showEditor(
         `🔑 My Surfingkeys Shortcuts:
 
-        ,rs research
-        ,ls linux Practice
-        ,cs Cubing Practice
-        ,cp Chess Practice
-        ,ts Typing Practice 
-        ,ms movies Sources
-        ,as anime Sources
-        ,ns Note Sources
-        `,
+,rs research
+,ls linux Practice
+,cs Cubing Practice
+,cp Chess Practice
+,ts Typing Practice
+,ms movies Sources
+,as anime Sources
+,ns Note Sources
+`,
         function () { }
     );
 });
 
-api.mapkey(',rs', "Research sources", function () {
-    Front.showEditor(
-        `
-            Choose a Research Tool:
+createMenu(',rs', 'Research Sources', [
+    { name: 'YouTube', url: 'https://www.youtube.com/' },
+    { name: 'GitHub', url: 'https://github.com/sumitBabuDhungel' },
+    { name: 'Reddit', url: 'https://www.reddit.com/' },
+    { name: 'Arch Wiki', url: 'https://wiki.archlinux.org/title/Main_page' },
+    { name: 'dev.to', url: 'https://dev.to/' },
+    { name: 'Lobste.rs', url: 'https://lobste.rs/' },
+    { name: 'ChatGPT', url: 'https://chatgpt.com/' },
+    { name: 'Hacker News', url: 'https://news.ycombinator.com/' },
+    { name: 'StackExchange', url: 'https://stackexchange.com/' },
+    { name: 'DevDocs', url: 'https://devdocs.io/' }
+]);
 
-            1 - youtube
-            2 - github
-            3 - reddit
-            4 - wiki.archlinux
-            5 - dev.to 
-            6 - lobste.rs
-            7 - chatgpt
-            8 - Hacker News
-            9 - Stackexchange
-            10 - devdocs.io
-            0 - Open All Research Tools
-        `,
-        function (choose) {
-            switch (choose.trim().toLowerCase()) {
-                case "1": window.open("https://www.youtube.com/", "_blank"); break;
-                case "2": window.open("https://github.com/sumitBabuDhungel", "_blank"); break;
-                case "3": window.open("https://www.reddit.com/", "_blank"); break;
-                case "4": window.open("https://wiki.archlinux.org/title/Main_page", "_blank"); break;
-                case "5": window.open("https://dev.to/", "_blank"); break;
-                case "6": window.open("https://lobste.rs/", "_blank"); break;
-                case "7": window.open("https://chatgpt.com/", "_blank"); break;
-                case "8": window.open("https://news.ycombinator.com/", "_blank"); break;
-                case "9": window.open("https://stackexchange.com/", "_blank"); break;
-                case "10": window.open("https://devdocs.io/", "_blank"); break;
-                case "0":
-                    [
-                        "https://www.youtube.com/",
-                        "https://chatgpt.com/",
-                        "https://github.com/sumitBabuDhungel",
-                        "https://www.reddit.com/",
-                        "https://wiki.archlinux.org/title/Main_page",
-                        "https://dev.to/",
-                        "https://lobste.rs/",
-                        "https://news.ycombinator.com/",
-                        "https://stackexchange.com/",
-                        "https://devdocs.io/"
-                    ].forEach(url => window.open(url, "_blank"));
-                    break;
-                default:
-                    Front.showPopup("Invalid choice. Please enter a number from the list.");
-            }
-        }
-    );
-});
+createMenu(',ls', 'Linux Sources', [
+    { name: 'OverTheWire', url: 'https://overthewire.org/wargames/bandit/' },
+    { name: 'Cmd Challenge', url: 'https://cmdchallenge.com/' },
+    { name: 'Warp', url: 'https://www.warp.dev/terminus' },
+    { name: 'Explainshell', url: 'https://explainshell.com/' },
+    { name: 'LinuxCommand.org', url: 'https://linuxcommand.org/' },
+    { name: 'HTB Academy', url: 'https://academy.hackthebox.com/modules' },
+    { name: 'tldr', url: 'https://tldr.inbrowser.app/pages/common/tar' }
+]);
 
-api.mapkey(',ls', 'Linux Sources', function () {
-    Front.showEditor(
-        `
-        Choose a linux tool:
+createMenu(',cs', 'Cubing Sources', [
+    { name: 'YouTube', url: 'https://www.youtube.com/' },
+    { name: 'JPerm OLL', url: 'https://jperm.net/algs/oll' },
+    { name: 'CSTimer', url: 'https://cstimer.net/' },
+    { name: 'SpeedcubeDB', url: 'https://speedcubedb.com/' },
+    { name: 'CubeSkills', url: 'https://cubeskills.com/' }
+]);
 
-        1 - OverTheWire
-        2 - Cmd Challenge
-        3 - Warp
-        4 - explain shell
-        5 - linuxCommand.org
-        6 - htbAcademy
-        7 - tldr.sh
-        0 - Open All Linux Tools
-        `,
-        function (choice) {
-            switch (choice.trim().toLowerCase()) {
-                case "1": window.open("https://overthewire.org/wargames/bandit/", "_blank"); break;
-                case "2": window.open("https://cmdchallenge.com/", "_blank"); break;
-                case "3": window.open("https://www.warp.dev/terminus", "_blank"); break;
-                case "4": window.open("https://explainshell.com/", "_blank"); break;
-                case "5": window.open("https://linuxcommand.org/", "_blank"); break;
-                case "6": window.open("https://academy.hackthebox.com/modules", "_blank"); break;
-                case "7": window.open("https://tldr.inbrowser.app/pages/common/tar", "_blank"); break;
-                case "0":
-                    [
-                        "https://overthewire.org/wargames/bandit/",
-                        "https://cmdchallenge.com/",
-                        "https://www.warp.dev/terminus",
-                        "https://explainshell.com/",
-                        "https://linuxcommand.org/",
-                        "https://academy.hackthebox.com/modules",
-                        "https://tldr.inbrowser.app/pages/common/tar"
-                    ].forEach(url => window.open(url, "_blank"));
-                    break;
-                default:
-                    Front.showPopup("Invalid choice. Please enter a number from the list.");
-            }
-        }
-    );
-});
+createMenu(',cp', 'Chess Practice', [
+    { name: 'Chess.com', url: 'https://www.chess.com/home' },
+    { name: 'Lichess', url: 'https://lichess.org/learn' },
+    { name: 'YouTube', url: 'https://www.youtube.com/' },
+    { name: 'ChessVision.ai', url: 'https://chessvision.ai/' },
+    { name: 'ChessTempo', url: 'https://www.chesstempo.com/' }
+]);
 
-api.mapkey(',cs', "Cubing Sources", function () {
-    Front.showEditor(
-        `
-        Choose a cubing tool:
-        1 - youtube
-        2 - JPerm OLL & PLL
-        3 - CSTimer
-        4 - Speedcube
-        5 - Cubeskills
-        0 - Open All Cubing Tools
-        `,
-        function (choice) {
-            switch (choice.trim().toLowerCase()) {
-                case "1": window.open("https://www.youtube.com/", "_blank"); break;
-                case "2": window.open("https://jperm.net/algs/oll", "_blank"); break;
-                case "3": window.open("https://cstimer.net/", "_blank"); break;
-                case "4": window.open("https://speedcubedb.com/", "_blank"); break;
-                case "5": window.open("https://cubeskills.com/", "_blank"); break;
-                case "0":
-                    [
-                        "https://www.youtube.com/",
-                        "https://cstimer.net/",
-                        "https://jperm.net/algs/oll",
-                        "https://speedcubedb.com/",
-                        "https://cubeskills.com/"
-                    ].forEach(url => window.open(url, "_blank"));
-                    break;
-                default:
-                    Front.showPopup("Invalid choice. Please enter a number from the list.");
-            }
-        }
-    );
-});
+createMenu(',ts', 'Typing Practice', [
+    { name: 'YouTube', url: 'https://www.youtube.com/' },
+    { name: 'TypingClub', url: 'https://www.edclub.com/sportal/program-3.game' },
+    { name: '10FastFingers', url: 'https://10fastfingers.com/typing-test/english' },
+    { name: 'Monkeytype', url: 'https://monkeytype.com/' },
+    { name: 'Keybr', url: 'https://www.keybr.com/' },
+    { name: 'TypeRacer', url: 'https://play.typeracer.com/' },
+    { name: 'ZType', url: 'https://zty.pe/' },
+    { name: 'TypeLit', url: 'https://www.typelit.io/' },
+    { name: 'KeyHero', url: 'https://www.keyhero.com/' },
+    { name: 'TypeWars', url: 'https://typewars.netlify.app/' }
+]);
 
-api.mapkey(',cp', "Chess Practice", function () {
-    Front.showEditor(
-        `
-        Choose a chess tool:
-        1 - chess.com
-        2 - lichess
-        3 - youtube
-        4 - chessVision.ai
-        5 - chessTempo
-        0 - Open All Chess Tools
-        `,
-        function (choice) {
-            switch (choice.trim().toLowerCase()) {
-                case "1": window.open("https://www.chess.com/home", "_blank"); break;
-                case "2": window.open("https://lichess.org/learn", "_blank"); break;
-                case "3": window.open("https://www.youtube.com/", "_blank"); break;
-                case "4": window.open("https://chessvision.ai/", "_blank"); break;
-                case "5": window.open("https://www.chesstempo.com/", "_blank"); break;
-                case "0":
-                    [
-                        "https://www.youtube.com/",
-                        "https://www.chess.com/home",
-                        "https://lichess.org/learn",
-                        "https://www.chessvision.ai/",
-                        "https://www.chesstempo.com/"
-                    ].forEach(url => window.open(url, "_blank"));
-                    break;
-                default:
-                    Front.showPopup("Invalid choice. Please enter a number from the list.");
-            }
-        }
-    );
-});
+createMenu(',ms', 'Movies and Series', [
+    { name: 'MoviesJoy', url: 'https://en.moviesjoy-to.lol/home' },
+    { name: 'Netflix', url: 'https://www.netflix.com/np/' },
+    { name: 'KissKH', url: 'https://kisskh.do/' },
+    { name: 'YouTube', url: 'https://www.youtube.com/' }
+]);
 
-api.mapkey(',ts', "Typing Sources", function () {
-    Front.showEditor(
-        `
-        Choose a typing tool:
-        1 - youtube
-        2 - typingclub
-        3 - 10fastfingers
-        4 - monkeytype
-        5 - keybr.com
-        6 - typingracing
-        7 - Ztype
-        8 - typelit.io
-        9 - keyhero.com
-        10 - typewar
-        0 - Open All Typing Tools
-        `,
-        function (choice) {
-            switch (choice.trim().toLowerCase()) {
-                case "1": window.open("https://www.youtube.com/", "_blank"); break;
-                case "2": window.open("https://www.edclub.com/sportal/program-3.game", "_blank"); break;
-                case "3": window.open("https://10fastfingers.com/typing-test/english", "_blank"); break;
-                case "4": window.open("https://monkeytype.com/", "_blank"); break;
-                case "5": window.open("https://www.keybr.com/", "_blank"); break;
-                case "6": window.open("https://play.typeracer.com/", "_blank"); break;
-                case "7": window.open("https://zty.pe/", "_blank"); break;
-                case "8": window.open("https://www.typelit.io/", "_blank"); break;
-                case "9": window.open("https://www.keyhero.com/", "_blank"); break;
-                case "10": window.open("https://typewars.netlify.app/", "_blank"); break;
-                case "0":
-                    [
-                        "https://www.youtube.com/",
-                        "https://www.edclub.com/sportal/program-3.game",
-                        "https://10fastfingers.com/typing-test/english",
-                        "https://monkeytype.com/",
-                        "https://www.keybr.com/",
-                        "https://play.typeracer.com/",
-                        "https://zty.pe/",
-                        "https://www.typelit.io/",
-                        "https://www.keyhero.com/",
-                        "https://typewars.netlify.app/"
-                    ].forEach(url => window.open(url, "_blank"));
-                    break;
-                default:
-                    Front.showPopup("Invalid choice. Please enter a number from the list.");
-            }
-        }
-    );
-});
+createMenu(',as', 'Anime and Manga', [
+    { name: 'Aniwatch', url: 'https://aniwatchtv.to/home' },
+    { name: 'HiAnime', url: 'https://hianime.to/home' },
+    { name: 'MangaReader', url: 'https://mangareader.to/home' },
+    { name: 'YouTube', url: 'https://www.youtube.com/' }
+]);
 
-api.mapkey(',ms', "Movies and Series", function () {
-    Front.showEditor(
-        `
-        Choose a movie Tool:
-        1 - movies.joy
-        2 - netflix
-        3 - kiss.kh
-        4 - youtube
-        0 - Open All Movie Tools
-        `,
-        function (choice) {
-            switch (choice.trim().toLowerCase()) {
-                case "1": window.open("https://en.moviesjoy-to.lol/home", "_blank"); break;
-                case "2": window.open("https://www.netflix.com/np/", "_blank"); break;
-                case "3": window.open("https://kisskh.do/", "_blank"); break;
-                case "4": window.open("https://www.youtube.com/", "_blank"); break;
-                case "0":
-                    [
-                        "https://en.moviesjoy-to.lol/home",
-                        "https://www.netflix.com/np/",
-                        "https://kisskh.do/",
-                        "https://www.youtube.com/"
-                    ].forEach(url => window.open(url, "_blank"));
-                    break;
-                default:
-                    Front.showPopup("Invalid choice. Please enter a number from the list.");
-            }
-        }
-    );
-});
-
-api.mapkey(',as', "Anime and manga", function () {
-    Front.showEditor(
-        `
-        Choose an Anime Tool:
-        1 - aniwatch
-        2 - hianime
-        3 - readmanga
-        4 - youtube
-        0 - Open All Anime Tools
-        `,
-        function (choice) {
-            switch (choice.trim().toLowerCase()) {
-                case "1": window.open("https://aniwatchtv.to/home", "_blank"); break;
-                case "2": window.open("https://hianime.to/home", "_blank"); break;
-                case "3": window.open("https://mangareader.to/home", "_blank"); break;
-                case "4": window.open("https://www.youtube.com/", "_blank"); break;
-                case "0":
-                    [
-                        "https://aniwatchtv.to/home",
-                        "https://hianime.to/home",
-                        "https://mangareader.to/home",
-                        "https://www.youtube.com/"
-                    ].forEach(url => window.open(url, "_blank"));
-                    break;
-                default:
-                    Front.showPopup("Invalid choice. Please enter a number from the list.");
-            }
-        }
-    );
-});
-
-api.mapkey(',ns', "Note Sources", function () {
-    Front.showEditor(
-        `
-        Choose a Note Tool:
-        1 - notion.so
-        2 - obsidian.md
-        3 - Standard Notes
-        4 - Logseq
-        0 - Open All Note Tools
-        `,
-        function (choice) {
-            switch (choice.trim().toLowerCase()) {
-                case "1": window.open("https://www.notion.so/command-for-linux-1fe872012b2d805fac38c22d9137ebff", "_blank"); break;
-                case "2": window.open("https://obsidian.md/", "_blank"); break;
-                case "3": window.open("https://standardnotes.com/", "_blank"); break;
-                case "4": window.open("https://logseq.com/", "_blank"); break;
-                case "0":
-                    [
-                        "https://obsidian.md/",
-                        "https://www.notion.so/command-for-linux-1fe872012b2d805fac38c22d9137ebff",
-                        "https://standardnotes.com/",
-                        "https://logseq.com/"
-                    ].forEach(url => window.open(url, "_blank"));
-                    break;
-                default:
-                    Front.showPopup("Invalid choice. Please enter a number from the list.");
-            }
-        }
-    );
-});
-
+createMenu(',ns', 'Note Taking Tools', [
+    { name: 'Notion', url: 'https://www.notion.so/command-for-linux-1fe872012b2d805fac38c22d9137ebff' },
+    { name: 'Obsidian', url: 'https://obsidian.md/' },
+    { name: 'Standard Notes', url: 'https://standardnotes.com/' },
+    { name: 'Logseq', url: 'https://logseq.com/' }
+]);
