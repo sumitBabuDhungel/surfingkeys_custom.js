@@ -6,7 +6,7 @@ console.log("✅ Surfingkeys custom config loaded!");
 api.mapkey(',h', "Help menu for key binds", function () {
     Front.prompt(
         `🔑 My Surfingkeys Shortcuts:
-
+        
         ,rs research
         ,ls linux Practice
         ,cs Cubing Practice
