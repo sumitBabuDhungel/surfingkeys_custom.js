@@ -4,7 +4,7 @@
 console.log("✅ Surfingkeys custom config loaded!");
 
 api.mapkey(',h', "Help menu for key binds", function () {
-    Front.showEditor(
+    Front.prompt(
         `🔑 My Surfingkeys Shortcuts:
 
         ,rs research
@@ -21,7 +21,7 @@ api.mapkey(',h', "Help menu for key binds", function () {
 });
 
 api.mapkey(',rs', "Research sources", function () {
-    Front.showEditor(
+    Front.prompt(
         `
             Choose a Research Tool:
 
@@ -72,7 +72,7 @@ api.mapkey(',rs', "Research sources", function () {
 });
 
 api.mapkey(',ls', 'Linux Sources', function () {
-    Front.showEditor(
+    Front.prompt(
         `
         Choose a linux tool:
 
@@ -114,7 +114,7 @@ api.mapkey(',ls', 'Linux Sources', function () {
 });
 
 api.mapkey(',cs', "Cubing Sources", function () {
-    Front.showEditor(
+    Front.prompt(
         `
         Choose a cubing tool:
         1 - youtube
@@ -149,7 +149,7 @@ api.mapkey(',cs', "Cubing Sources", function () {
 });
 
 api.mapkey(',cp', "Chess Practice", function () {
-    Front.showEditor(
+    Front.prompt(
         `
         Choose a chess tool:
         1 - chess.com
@@ -184,7 +184,7 @@ api.mapkey(',cp', "Chess Practice", function () {
 });
 
 api.mapkey(',ts', "Typing Sources", function () {
-    Front.showEditor(
+    Front.prompt(
         `
         Choose a typing tool:
         1 - youtube
@@ -234,7 +234,7 @@ api.mapkey(',ts', "Typing Sources", function () {
 });
 
 api.mapkey(',ms', "Movies and Series", function () {
-    Front.showEditor(
+    Front.prompt(
         `
         Choose a movie Tool:
         1 - movies.joy
@@ -266,7 +266,7 @@ api.mapkey(',ms', "Movies and Series", function () {
 });
 
 api.mapkey(',as', "Anime and manga", function () {
-    Front.showEditor(
+    Front.prompt(
         `
         Choose an Anime Tool:
         1 - aniwatch
@@ -298,7 +298,7 @@ api.mapkey(',as', "Anime and manga", function () {
 });
 
 api.mapkey(',ns', "Note Sources", function () {
-    Front.showEditor(
+    Front.prompt(
         `
         Choose a Note Tool:
         1 - notion.so
